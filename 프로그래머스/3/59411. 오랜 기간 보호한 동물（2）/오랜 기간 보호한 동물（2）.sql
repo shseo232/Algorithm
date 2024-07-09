@@ -1,0 +1,13 @@
+-- 코드를 입력하세요
+SELECT
+    a.ANIMAL_ID,a.NAME
+FROM
+    ANIMAL_OUTS a
+JOIN
+    ANIMAL_INS b
+ON
+    a.ANIMAL_ID = b.ANIMAL_ID
+ORDER BY
+     DATEDIFF(a.DATETIME,b.DATETIME) DESC
+LIMIT 2;
+        
