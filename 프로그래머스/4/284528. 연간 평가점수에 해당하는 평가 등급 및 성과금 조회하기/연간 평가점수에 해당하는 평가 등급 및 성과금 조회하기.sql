@@ -1,0 +1,31 @@
+with BON AS (
+SELECT
+a.EMP_NO,(CASE
+        WHEN AVG(a.SCORE) >= 96 THEN 'S'
+        WHEN AVG(a.SCORE) >= 90 THEN 'A'
+        WHEN AVG(a.SCORE) >= 80 THEN 'B'
+        ELSE 'C'
+        END
+    ) as GRADE, (CASE
+        WHEN AVG(a.SCORE) >= 96 THEN b.SAL*0.2
+        WHEN AVG(a.SCORE) >= 90 THEN b.SAL*0.15
+        WHEN AVG(a.SCORE) >= 80 THEN b.SAL*0.1
+        ELSE 0
+        END
+    ) as BONUS 
+FROM HR_GRADE a
+JOIN HR_EMPLOYEES b
+ON a.EMP_NO = b.EMP_NO
+GROUP BY a.EMP_NO
+)
+
+
+
+
+SELECT 
+a.EMP_NO,a.EMP_NAME,b.GRADE,b.BONUS
+FROM HR_EMPLOYEES  a 
+JOIN BON b
+ON a.EMP_NO = b.EMP_NO
+GROUP BY EMP_NO
+ORDER BY EMP_NO
