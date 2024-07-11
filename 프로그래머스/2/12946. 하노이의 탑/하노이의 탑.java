@@ -3,7 +3,7 @@ import java.util.*;
 class Solution {
     static List<int[]> list = new ArrayList();
     public static void move(int n,int from, int to){
-        if(n ==1){
+        if(int n ==1){
             list.add(new int[] {from,to});
             return;
         }
