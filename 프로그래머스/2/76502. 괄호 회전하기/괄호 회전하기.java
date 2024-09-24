@@ -11,15 +11,15 @@ class Solution {
                 {
                     stack.push(s.charAt(i));
                 }
-                else if (!stack.isEmpty() && stack.peek()=='{' &&s.charAt(i)=='}'){
+                else if (!stack.isEmpty() && stack.peek()=='{' && s.charAt(i)=='}'){
                     stack.pop();
                 }
 
-                else if (!stack.isEmpty() && stack.peek()=='(' &&s.charAt(i)==')'){  
+                else if (!stack.isEmpty() && stack.peek()=='(' && s.charAt(i)==')'){  
                     stack.pop();
                 }
 
-                else if (!stack.isEmpty() && stack.peek()=='['&&s.charAt(i)==']'){  
+                else if (!stack.isEmpty() && stack.peek()=='['&& s.charAt(i)==']'){  
                     stack.pop();
                 }
                 else{
