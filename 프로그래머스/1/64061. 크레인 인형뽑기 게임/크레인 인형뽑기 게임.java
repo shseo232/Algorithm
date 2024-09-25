@@ -1,20 +1,22 @@
 import java.util.*;
+
 class Solution {
     public int solution(int[][] board, int[] moves) {
         int answer = 0;
-        Stack<Integer> stack = new Stack();
-        for(int i=0; i< moves.length; i++){
-            int pick = moves[i]-1;
-            for(int j=0; j<board.length;j++){
-                if(board[j][pick] != 0){
-                    if(!stack.isEmpty() && stack.peek() == board[j][pick]){
+        Deque<Integer> stack = new ArrayDeque<>();
+        
+        for (int move : moves) {
+            int column = move - 1;
+            for (int row = 0; row < board.length; row++) {
+                if (board[row][column] != 0) {
+                    int pickedDoll = board[row][column];
+                    board[row][column] = 0;
+                    if (!stack.isEmpty() && stack.peek() == pickedDoll) {
                         stack.pop();
-                        board[j][pick] = 0;   
-                        answer+=2;                        
-                        break;
+                        answer += 2;
+                    } else {
+                        stack.push(pickedDoll);
                     }
-                    stack.push(board[j][pick]);
-                    board[j][pick] = 0;
                     break;
                 }
             }
