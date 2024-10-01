@@ -4,7 +4,7 @@ class Solution {
     public List<Integer> solution(int N, int[] stages) {
         List<Integer> answer = new ArrayList();
         Arrays.sort(stages);
-        List<Map<Integer,Double>> list = new ArrayList();
+        Map<Integer,Double> map = new HashMap();
         for(int i =0; i<N; i++){
             int stage = i+1;
             Double player = 0.0;
@@ -17,25 +17,23 @@ class Solution {
                     }
                 }
             }
-            Map<Integer,Double> map = new HashMap();
+
             if(player == 0.0){
                 map.put(i+1, 0.0);
             }else{
                 map.put(i+1,count/player);
             }
             
-            list.add(map);
         }
-        list.sort((m1, m2) -> {
-            Double value1 = m1.values().iterator().next(); 
-            Double value2 = m2.values().iterator().next(); 
-            return value2.compareTo(value1); // 내림차순 비교
+        // System.out.print(map);
+        List<Integer> list = new ArrayList(map.keySet());
+        Collections.sort(list,(s1,s2)->{
+            Double value1 = map.get(s1);
+            Double value2 = map.get(s2);
+            return Double.compare(value2, value1);
         });
-
-        for (Map<Integer, Double> map : list) {
-            Integer key = map.keySet().iterator().next(); 
-            answer.add(key); 
-        }
+            System.out.print(list);
+        answer = list;
             return answer;
     }
 }
