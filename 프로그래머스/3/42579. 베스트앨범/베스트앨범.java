@@ -33,17 +33,15 @@ class Solution {
         
         for(int i=0; i<list.size(); i++){
             ArrayList<int[]> songs = map.get(list.get(i)); //values에 대해 새로운 배열 생성
-            Collections.sort(songs, (s1,s2)->{
-               return s2[0] - s1[0];
+            Collections.sort(songs, new Comparator<int[]>(){
+                @Override
+                public int compare(int[] song1, int[] song2) {
+                    if (song1[0] == song2[0]) {
+                        return song1[1] - song2[1]; //고유번호 기준 오름차순
+                    }
+                    return song2[0] - song1[0]; //재생횟수 기준 내림차순
+                }
             });
-            //     @Override
-            //     public int compare(int[] song1, int[] song2) {
-            //         if (song1[0] == song2[0]) {
-            //             return song1[1] - song2[1]; //고유번호 기준 오름차순
-            //         }
-            //         return song2[0] - song1[0]; //재생횟수 기준 내림차순
-            //     }
-            // });
             for (int j=0; j<songs.size(); j++) {
                 if (j >= 2) {
                     break;
