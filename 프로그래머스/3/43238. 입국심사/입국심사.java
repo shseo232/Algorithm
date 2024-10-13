@@ -9,8 +9,9 @@ class Solution {
         while(left <= right) {
             long mid = (left + right) / 2;
             long complete = 0;
-            for (int i = 0; i < times.length; i++)
+            for (int i = 0; i < times.length; i++){
                 complete += mid / times[i];
+            }
             if (complete < n) 
                 left = mid + 1;
             else {
